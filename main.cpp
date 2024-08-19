@@ -15,29 +15,34 @@ struct polynom {
     numberOfSolutions n;
 };
 
-void readPolynom(polynom *p) {
+
+
+void readQuadratic(polynom *p) {
     printf("Enter 3 multipliers of the quadratic equation:\n");
     scanf("%lf %lf %lf", &(p->a), &(p->b), &(p->c));
 }
 
-void printPolynom(polynom *p) {
-    printf("Equation: ");
-    printf("%lfx^2 + %lfx + %lf = 0\n", p->a, p->b, p->c);
+void printQuadratic(polynom *p) {
+    printf("Equation: %lfx^2 + %lfx + %lf = 0\n", p->a, p->b, p->c);
 }
 
-void solvePolynom(polynom *p) {
+void solveLinear(polynom *p) {
+    if (p->b == 0) {
+        if (p->c == 0) p->n = INFINITE;
+        else p->n = ZERO;
+    } else {
+        p->n = ONE;
+        p->x1 = - p->c / p->b;
+    }
+}
+
+void solveQuadratic(polynom *p) {
     if (p->a == 0) {
-        if (p->b == 0) {
-            if (p->c == 0) p->n = INFINITE;
-            else p->n = ZERO;
-        } else {
-            p->n = ONE;
-            p->x1 = - p->c / p->b;
-        }
+        solveLinear(p);
     } else {
         p->d = p->b * p->b - 4 * p->a * p->c;
         if (p->d < -EPS) p->n = ZERO;
-        else if (fabs(p->d) <= EPS) {
+        else if (p->d <= EPS) {
             p->n = ONE;
             p->x1 = -p->b / (2 * p->a);
         }
@@ -49,7 +54,8 @@ void solvePolynom(polynom *p) {
     }
 }
 
-void printPolynomSolutions(polynom *p) {
+
+void printQuadraticSolutions(polynom *p) {
     switch (p->n) {
         case ZERO:
             printf("The equation has no solutions\n");
@@ -67,9 +73,9 @@ void printPolynomSolutions(polynom *p) {
 }
 
 int main() {
-    struct polynom p;
-    readPolynom(&p);
+    polynom p;
+    readQuadratic(&p);
     //printPolynom(&p);
-    solvePolynom(&p);
-    printPolynomSolutions(&p);
+    solveQuadratic(&p);
+    printQuadraticSolutions(&p);
 }

@@ -1,35 +1,37 @@
 #include "tester.h"
 
 const Test tests[8] = {
-    {1, -2, 1, ONE, 1},
-    {0, 0, 0, INFINITE},
-    {0, 5.0, -22.5, ONE, 4.5},
-    {1, 0, -4, TWO, 2, -2},
-    {0, 0, 28.3, ZERO},
-    {5, 0, 34, ZERO},
-    {1, -3, -4, TWO, 4, -1},
-    {1, 3, 4, ZERO}
+    {1, -2, 1, ONE_SOLUTION, 1},
+    {0, 0, 0, INFINITE_SOLUTIONS},
+    {0, 5.0, -22.5, ONE_SOLUTION, 4.5},
+    {1, 0, -4, TWO_SOLUTIONS, 2, -2},
+    {0, 0, 28.3, ZERO_SOLUTIONS},
+    {5, 0, 34, ZERO_SOLUTIONS},
+    {1, -3, -4, TWO_SOLUTIONS, 4, -1},
+    {1, 3, 4, ZERO_SOLUTIONS}
 };
     
-int runTest(const Test *t)
+int runTest(const Test *test)
 {
-    assert(t != nullptr);
+    assert(test != nullptr);
     double x1 = 0, x2 = 0;
-    numberOfSolutions n = ZERO;
-    n = solveQuadratic(t->a, t->b, t->c, &x1, &x2);
-    if (!isEqual(n, t->n) || (n == ONE && !isEqual(x1, t->x1)) || (n == TWO && (!isEqual(x1, t->x1) || !isEqual(x2, t->x2)) && (!isEqual(x1, t->x2) || !isEqual(x2, t->x1))))
+    numberOfSolutions n = ZERO_SOLUTIONS;
+    n = solve(test->a, test->b, test->c, &x1, &x2);
+    if (!isEqual(n, test->n) || (n == ONE_SOLUTION && !isEqual(x1, test->x1)) || (n == TWO_SOLUTIONS && (!isEqual(x1, test->x1) || !isEqual(x2, test->x2)) && (!isEqual(x1, test->x2) || !isEqual(x2, test->x1))))
     {
-        printf("Error in: a = %lg, b = %lg, c = %lg; result: n = %d, ", t->a, t->b, t->c, n);
-        if (n == ONE)
+        setRed();
+        printf("Error in: a = %lg, b = %lg, c = %lg; result: n = %d, ", test->a, test->b, test->c, n);
+        if (n == ONE_SOLUTION)
             printf("x = %lg", x1);
-        if (n == TWO)
+        if (n == TWO_SOLUTIONS)
             printf("x1 = %lg, x2 = %lg", x1, x2);
-        printf("\nExpected: n = %d, ", t->n);
-        if (t->n == ONE)
-            printf("x = %lg", t->x1);
-        if (t->n == TWO)
-            printf("x1 = %lg, x2 = %lg", t->x1, t->x2);
+        printf("\nExpected: n = %d, ", test->n);
+        if (test->n == ONE_SOLUTION)
+            printf("x = %lg", test->x1);
+        if (test->n == TWO_SOLUTIONS)
+            printf("x1 = %lg, x2 = %lg", test->x1, test->x2);
         printf("\n");
+        resetColor();
         return 1;
     }
     return 0;
@@ -41,10 +43,14 @@ int runAllTests()
     {
         if (runTest(&(tests[i - 1])))
         {
+            setRed();
             printf("Error at test %d\n", i);
+            resetColor();
             return i;
         }
     }
+    setGreen();
     printf("Tests complete succesfully\n");
+    resetColor();
     return 0;
 }

@@ -11,12 +11,6 @@ struct flag {
     const char* fullName;
     const char* description;
 };
-
-const flag flagsQuad[] {
-    {"-h", "--help", "shows avalible commands"},
-    {"-t", "--test", "runs tests"}
-};
-
 int checkFlags(int argc, char *argv[], int flagsSize, const flag* flags);
 
 #endif

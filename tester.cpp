@@ -43,14 +43,10 @@ int runAllTests()
     {
         if (runTest(&(tests[i - 1])))
         {
-            setRed();
-            printf("Error at test %d\n", i);
-            resetColor();
+            printfRed("Error at test %d\n", i);
             return i;
         }
     }
-    setGreen();
-    printf("Tests complete succesfully\n");
-    resetColor();
+    printfGreen("Tests complete succesfully\n");
     return 0;
 }

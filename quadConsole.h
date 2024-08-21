@@ -5,6 +5,7 @@
 #include <assert.h>
 
 #include "number.h"
+#include "colorPrint.h"
 
 void flush();
 

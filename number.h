@@ -14,8 +14,5 @@ bool isEqual(double a, double b);
 
 bool isZero(double a);
 
-bool isEqual(char* f, char* s);
-bool isEqual(char* f, const char* s);
-
 
 #endif

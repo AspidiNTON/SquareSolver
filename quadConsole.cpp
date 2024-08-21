@@ -16,7 +16,7 @@ void readQuadratic(double* a, double* b, double* c) {
     printf("Enter 3 multipliers of the quadratic equation:\n");
     while (scanf("%lf %lf %lf", a, b, c) != 3) {
         flush();
-        printf("Please enter three real numbers:\n");
+        printfRed("Please enter three real numbers:\n");
     }
 }
 

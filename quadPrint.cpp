@@ -14,5 +14,7 @@ void printQuadraticSolutions(numberOfSolutions n, double x1, double x2) {
         case INFINITE:
             printf("The equation has an infinite number of solutions\n");
             break;
+        default:
+            printf("wtf was that damage my guy?!\n");
     }
 }

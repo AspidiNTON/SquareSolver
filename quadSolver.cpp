@@ -3,7 +3,10 @@
 const double DOUBLE_EPSILON = 0.000001;
 
 numberOfSolutions solveQuadratic(double a, double b, double c, double* x1, double* x2) {
-    if (a == 0) {
+    assert(x1 != nullptr);
+    assert(x2 != nullptr);
+    assert(x1 != x2);
+    if (isEqual(a, 0)) {
         return solveLinear(b, c, x1);
     } else {
         double d = b * b - 4 * a * c;

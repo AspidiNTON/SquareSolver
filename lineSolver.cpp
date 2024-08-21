@@ -1,8 +1,9 @@
 #include "lineSolver.h"
 
 numberOfSolutions solveLinear(double p, double q, double* x) {
-    if (p == 0) {
-        return (q == 0) ? INFINITE : ZERO;
+    assert(x != nullptr);
+    if (isEqual(p, 0)) {
+        return (isEqual(q, 0)) ? INFINITE : ZERO;
     } else {
         *x = - q / p;
         return ONE;

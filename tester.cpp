@@ -13,10 +13,11 @@ const Test tests[8] = {
     
 int runTest(const Test *t)
 {
-    double x1, x2;
-    numberOfSolutions n;
+    assert(t != nullptr);
+    double x1 = 0, x2 = 0;
+    numberOfSolutions n = ZERO;
     n = solveQuadratic(t->a, t->b, t->c, &x1, &x2);
-    if (n != t->n || n == ONE && x1 != t->x1 || n == TWO && (x1 != t->x1 || x2 != t->x2) && (x2 != t->x1 || x1 != t->x2))
+    if (!isEqual(n, t->n) || (n == ONE && !isEqual(x1, t->x1)) || (n == TWO && (!isEqual(x1, t->x1) || !isEqual(x2, t->x2)) && (!isEqual(x1, t->x2) || !isEqual(x2, t->x1))))
     {
         printf("Error in: a = %lg, b = %lg, c = %lg; result: n = %d, ", t->a, t->b, t->c, n);
         if (n == ONE)

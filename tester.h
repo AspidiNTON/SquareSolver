@@ -2,10 +2,11 @@
 #define TESTER_H
 #include "number.h"
 #include "quadSolver.h"
+#include <assert.h>
 
 struct Test {
-    double a, b, c;
-    numberOfSolutions n;
+    double a = 0, b = 0, c = 0;
+    numberOfSolutions n = ZERO;
     double x1 = 0, x2 = 0;
 };
 

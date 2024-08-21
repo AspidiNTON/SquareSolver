@@ -1,6 +1,7 @@
 #ifndef QUAD_SOLVER_H
 #define QUAD_SOLVER_H
 #include <iostream>
+#include <assert.h>
 #include "lineSolver.h"
 #include "number.h"
 

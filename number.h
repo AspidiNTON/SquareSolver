@@ -4,6 +4,6 @@ enum numberOfSolutions {
     ZERO,
     ONE,
     TWO,
-    INFINITE
+    INFINITE = -1
 };
 #endif
